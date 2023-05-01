@@ -1,13 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import Home from "./component/home/Home";
+import Admin from "./component/admin/Admin";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>Hello world!</div>,
+        element: <Admin />,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+            },
+        ],
     },
 ]);
 
