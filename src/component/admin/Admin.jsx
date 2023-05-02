@@ -5,7 +5,7 @@ import Footer from "../footer/Footer";
 
 const Admin = () => {
     return (
-        <div>
+        <div className="bg-slate-200">
             <Header />
             <Outlet />
             <Footer />
