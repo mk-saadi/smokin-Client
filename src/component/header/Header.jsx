@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import ActiveLink from "../active/ActiveLink";
+import { MdOutlineNoFood } from "react-icons/md";
 
 const Header = () => {
     const { user } = useContext(AuthContext);
@@ -12,8 +13,9 @@ const Header = () => {
             <div className="navbar-start">
                 <Link
                     to="/"
-                    className="text-white outline outline-1 rounded px-4 outline-sky-400 font-extrabold ml-2 drop-shadow-lg text-xl"
+                    className="text-white outline outline-1 px-4 outline-sky-400 font-extrabold ml-2 drop-shadow-lg text-xl flex justify-center items-center gap-2 py-2 rounded-none"
                 >
+                    <MdOutlineNoFood className="sm:text-2xl text-xl md:text-4xl"></MdOutlineNoFood>
                     SMOKI'N
                 </Link>
             </div>
