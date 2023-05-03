@@ -35,6 +35,7 @@ const Register = () => {
                             onSubmit={handleRegister}
                             className="card-body"
                         >
+                            {/* displayName */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -46,6 +47,19 @@ const Register = () => {
                                     className="input input-bordered"
                                 />
                             </div>
+                            {/* photoURL */}
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input
+                                    name="name"
+                                    type="text"
+                                    placeholder="your name"
+                                    className="input input-bordered"
+                                />
+                            </div>
+                            {/* email */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -57,6 +71,7 @@ const Register = () => {
                                     className="input input-bordered"
                                 />
                             </div>
+                            {/* password */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>

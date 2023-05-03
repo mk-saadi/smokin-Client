@@ -6,7 +6,7 @@ import ActiveLink from "../active/ActiveLink";
 import { MdOutlineNoFood } from "react-icons/md";
 
 const Header = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, upload } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logOut()
@@ -33,14 +33,17 @@ const Header = () => {
             </div>
             <div className="navbar-end order-3 ml-20 sm:m-0 md:m-0 lg:m-0">
                 {user ? (
-                    <Link to="/">
-                        <button
-                            className="sm:px-4 text-xs sm:text-sm md:text-base rounded-none btn btn-info btn-sm text-white"
-                            onClick={handleLogOut}
-                        >
-                            Logout
-                        </button>
-                    </Link>
+                    <>
+                        {/* <img src={} alt="" /> */}
+                        <Link to="/">
+                            <button
+                                className="sm:px-4 text-xs sm:text-sm md:text-base rounded-none btn btn-info btn-sm text-white"
+                                onClick={handleLogOut}
+                            >
+                                Logout
+                            </button>
+                        </Link>
+                    </>
                 ) : (
                     <>
                         <Link to="/login">
