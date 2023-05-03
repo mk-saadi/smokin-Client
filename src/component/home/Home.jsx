@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import Chefs from "./Chefs";
 
 const Home = () => {
     const chef = useLoaderData([]);
@@ -35,6 +36,17 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <main className="my-44">
+                <section></section>
+                <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3 mx-10">
+                    {chef.map((cf) => (
+                        <Chefs
+                            key={cf.id}
+                            cf={cf}
+                        ></Chefs>
+                    ))}
+                </section>
+            </main>
         </>
     );
 };

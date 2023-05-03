@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
+    const [accepted, setAccepted] = useState(false);
+    const [error, setError] = useState("");
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -13,17 +15,31 @@ const Register = () => {
         const email = form.email.value;
         const displayName = form.name.value;
         const password = form.password.value;
+        const confirm = form.confirm.value;
 
         console.log(`name: ${displayName} \n email: ${email}\n password: ${password}`);
+
+        setError("");
+
+        if (password !== confirm) {
+            setError("password did not match");
+        } else if (password.length < 6) {
+            setError(`password must be at \n least 6 characters long`);
+        }
 
         createUser(email, password, displayName)
             .then((result) => {
                 const createdUser = result.user;
                 console.log(createdUser);
+                form.reset();
             })
             .catch((error) => {
                 console.log(error);
             });
+    };
+
+    const handleAccepted = (event) => {
+        setAccepted(event.target.checked);
     };
 
     return (
@@ -35,36 +51,13 @@ const Register = () => {
                             onSubmit={handleRegister}
                             className="card-body"
                         >
-                            {/* displayName */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input
-                                    name="name"
-                                    type="text"
-                                    placeholder="your name"
-                                    className="input input-bordered"
-                                />
-                            </div>
-                            {/* photoURL */}
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input
-                                    name="name"
-                                    type="text"
-                                    placeholder="your name"
-                                    className="input input-bordered"
-                                />
-                            </div>
                             {/* email */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input
+                                    required
                                     name="email"
                                     type="text"
                                     placeholder="email"
@@ -77,22 +70,52 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input
+                                    required
                                     name="password"
                                     type="password"
                                     placeholder="password"
                                     className="input input-bordered"
                                 />
+                            </div>
+                            {/* confirm */}
+                            <div className="form-control">
                                 <label className="label">
-                                    <a
-                                        href="#"
-                                        className="label-text-alt link link-hover"
-                                    >
-                                        Forgot password?
-                                    </a>
+                                    <span className="label-text">Confirm Password</span>
+                                </label>
+                                <input
+                                    required
+                                    name="confirm"
+                                    type="password"
+                                    placeholder="password"
+                                    className="input input-bordered"
+                                />
+                            </div>
+
+                            <div className="flex justify-center items-center gap-2 mt-3">
+                                <input
+                                    className="checkbox checkbox-info w-5 h-5"
+                                    name="accept"
+                                    onClick={handleAccepted}
+                                    type="checkbox"
+                                ></input>
+                                <label className="text-sm">
+                                    Accept{" "}
+                                    <span className="text-info link text">
+                                        Terms and Conditions
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor=""
+                                    className="text-error text-sm"
+                                >
+                                    {error}
                                 </label>
                             </div>
                             <div className="form-control mt-6">
                                 <button
+                                    disabled={!accepted}
                                     className="btn btn-info rounded-none font-bold text-white"
                                     type="submit"
                                 >

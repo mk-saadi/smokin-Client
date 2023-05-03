@@ -72,6 +72,16 @@ const Login = () => {
                                     </a>
                                 </label>
                             </div>
+                            <div className="flex justify-left items-center gap-2 text-left">
+                                <input
+                                    className="checkbox checkbox-info w-5 h-5"
+                                    name="accept"
+                                    type="checkbox"
+                                ></input>
+                                <label className="text-sm">
+                                    <p>Remember me</p>
+                                </label>
+                            </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-info rounded-none font-bold text-white">
                                     Login

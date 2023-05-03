@@ -7,10 +7,8 @@ import {
     signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { getStorage, ref, uploadBytes } from "firebase/auth";
 
 const auth = getAuth(app);
-const storage = getStorage();
 
 export const AuthContext = createContext(null);
 
@@ -46,22 +44,12 @@ const AuthProvider = ({ children }) => {
         };
     }, []);
 
-    const upload = async (file, user, setLoading) => {
-        const fileRef = ref(storage, user.uid + ".png");
-
-        setLoading(true);
-        const spanShot = await uploadBytes(fileRef, file);
-        setLoading(false);
-        alert("Upload completed");
-    };
-
     const authInfo = {
         user,
         loading,
         createUser,
         signIn,
         logOut,
-        upload,
     };
 
     return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
