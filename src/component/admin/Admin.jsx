@@ -7,8 +7,10 @@ const Admin = () => {
     return (
         <div className="bg-slate-200">
             <Header />
-            <Outlet />
-            <Footer />
+            <div className="mt-[4.4rem]">
+                <Outlet />
+                <Footer />
+            </div>
         </div>
     );
 };

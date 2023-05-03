@@ -1,19 +1,55 @@
-import React from "react";
+/* eslint-disable react/no-unescaped-entities */
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    // const location = useLocation();
+    // console.log("login page location", location);
+
+    // const from = location.state?.from?.pathname || "/category/0";
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(`email${email}\n password${password}`);
+
+        signIn(email, password)
+            .then((result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                // navigate(from, { replace: true });
+                navigate("/");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200">
+            <div className="hero min-h-screen bg-slate-600">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <div className="card-body">
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100  border-t-[1px] border-slate-500">
+                        <form
+                            onSubmit={handleLogin}
+                            className="card-body"
+                        >
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input
+                                    name="email"
                                     type="text"
-                                    placeholder="email"
+                                    placeholder="enter email"
                                     className="input input-bordered"
                                 />
                             </div>
@@ -22,8 +58,9 @@ const Login = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input
-                                    type="text"
-                                    placeholder="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="enter password"
                                     className="input input-bordered"
                                 />
                                 <label className="label">
@@ -36,9 +73,19 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-info rounded-none font-bold text-white">
+                                    Login
+                                </button>
                             </div>
-                        </div>
+                        </form>
+                        <Link
+                            className="text-center -mt-4"
+                            to="/register"
+                        >
+                            <button className="hover:underline text-info bg-transparent border-0 mb-7 text-xs opacity-80">
+                                Don't have an account?
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
