@@ -1,13 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from "react-headless-accordion";
+import { FaFilePdf } from "react-icons/fa";
 import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 const Blog = () => {
     return (
-        <div className="min-h-screen">
-            <div ref={ref}>
+        <div className="min-h-screen mx-20 pt-8">
+            <div
+                className="mt-16  bg-slate-300 "
+                ref={ref}
+            >
                 <Accordion
                     transition={{ duration: "300ms", timingFunction: "cubic-bezier(0, 0, 0.2, 1)" }}
                 >
@@ -241,13 +245,28 @@ const Blog = () => {
 
                                 <AccordionBody>
                                     <div className="p-5 font-light">
-                                        Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem
-                                        ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
-                                        ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
-                                        ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
-                                        ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
-                                        ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem
-                                        ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                                        <p className="mb-3 text-gray-500">
+                                            In React, a custom hook is a reusable function that
+                                            contains some logic and state that can be shared across
+                                            multiple components. Custom hooks can be created by
+                                            combining existing React hooks, such as useState,
+                                            useEffect, useContext, and others, and provide a way to
+                                            encapsulate and reuse functionality in a more organized
+                                            and modular way.
+                                        </p>
+                                        <p className="mb-3 text-gray-500">
+                                            Creating a custom hook can help simplify and abstract
+                                            away complex logic and state management that is repeated
+                                            across multiple components. It can also help improve
+                                            code reusability and maintainability, making it easier
+                                            to refactor and test.
+                                        </p>
+                                        <p className="mb-3 text-gray-500">
+                                            For example, if you have some state and logic that are
+                                            used across multiple components, you can create a custom
+                                            hook that encapsulates that state and logic, and then
+                                            use it in all those
+                                        </p>
                                     </div>
                                 </AccordionBody>
                             </>
@@ -259,7 +278,14 @@ const Blog = () => {
                 targetRef={ref}
                 filename="code-example.pdf"
             >
-                {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+                {({ toPdf }) => (
+                    <button
+                        className="flex gap-2 btn btn-info rounded-none mt-8 mb-20 text-white"
+                        onClick={toPdf}
+                    >
+                        <FaFilePdf className="text-xl" /> Download Pdf
+                    </button>
+                )}
             </Pdf>
         </div>
     );

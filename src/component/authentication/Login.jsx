@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, handleGoogleAuth, handleGithubAuth } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -27,6 +27,17 @@ const Login = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const handleGoogleLogin = () => {
+        handleGoogleAuth()
+            .then((result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
             })
             .catch((error) => {
                 console.log(error);
@@ -83,7 +94,10 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="flex justify-center items-center gap-1">
-                                <button className="flex justify-center items-center btn btn-outline gap-1">
+                                <button
+                                    onClick={handleGoogleLogin}
+                                    className="flex justify-center items-center btn btn-outline gap-1"
+                                >
                                     <FcGoogle /> Google
                                 </button>
                                 <button className="flex justify-center items-center btn btn-outline gap-1">

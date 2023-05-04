@@ -13,10 +13,55 @@ const ChefDetail = () => {
     const [checkedItems4, setCheckedItems4] = useState({});
 
     const [favoriteClicked, setFavoriteClicked] = useState(false);
+    const [favoriteClicked1, setFavoriteClicked1] = useState(false);
+    const [favoriteClicked2, setFavoriteClicked2] = useState(false);
+    const [favoriteClicked3, setFavoriteClicked3] = useState(false);
 
     const handleFavoriteClick = () => {
         if (!favoriteClicked) {
             setFavoriteClicked(true);
+            toast.success("Recipe added to favorites!", {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+    const handleFavoriteClick1 = () => {
+        if (!favoriteClicked) {
+            setFavoriteClicked1(true);
+            toast.success("Recipe added to favorites!", {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+    const handleFavoriteClick2 = () => {
+        if (!favoriteClicked) {
+            setFavoriteClicked2(true);
+            toast.success("Recipe added to favorites!", {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+    const handleFavoriteClick3 = () => {
+        if (!favoriteClicked) {
+            setFavoriteClicked3(true);
             toast.success("Recipe added to favorites!", {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -130,7 +175,13 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
-                    <button className="btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5">
+                    <button
+                        className={`btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5 ${
+                            favoriteClicked1 ? "btn btn-error cursor-not-allowed" : ""
+                        }`}
+                        onClick={handleFavoriteClick1}
+                        disabled={favoriteClicked1}
+                    >
                         <FaBookmark></FaBookmark>Favorite
                     </button>
                 </div>
@@ -163,7 +214,13 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
-                    <button className="btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5">
+                    <button
+                        className={`btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5 ${
+                            favoriteClicked2 ? "btn btn-error cursor-not-allowed" : ""
+                        }`}
+                        onClick={handleFavoriteClick2}
+                        disabled={favoriteClicked2}
+                    >
                         <FaBookmark></FaBookmark>Favorite
                     </button>
                 </div>
@@ -196,7 +253,13 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
-                    <button className="btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5">
+                    <button
+                        className={`btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5 ${
+                            favoriteClicked3 ? "btn btn-error cursor-not-allowed" : ""
+                        }`}
+                        onClick={handleFavoriteClick3}
+                        disabled={favoriteClicked3}
+                    >
                         <FaBookmark></FaBookmark>Favorite
                     </button>
                 </div>
