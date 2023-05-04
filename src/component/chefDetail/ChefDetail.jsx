@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
+import { FaBookmark, FaHeart } from "react-icons/fa";
 import "./chef.css";
+import toast from "react-hot-toast";
 
 const ChefDetail = () => {
     const cf = useLoaderData();
@@ -10,6 +11,23 @@ const ChefDetail = () => {
     const [checkedItems2, setCheckedItems2] = useState({});
     const [checkedItems3, setCheckedItems3] = useState({});
     const [checkedItems4, setCheckedItems4] = useState({});
+
+    const [favoriteClicked, setFavoriteClicked] = useState(false);
+
+    const handleFavoriteClick = () => {
+        if (!favoriteClicked) {
+            setFavoriteClicked(true);
+            toast.success("Recipe added to favorites!", {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
 
     return (
         <div className="pt-1">
@@ -73,6 +91,15 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
+                    <button
+                        className={`btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5 ${
+                            favoriteClicked ? "btn btn-error cursor-not-allowed" : ""
+                        }`}
+                        onClick={handleFavoriteClick}
+                        disabled={favoriteClicked}
+                    >
+                        <FaBookmark></FaBookmark>Favorite
+                    </button>
                 </div>
                 <div className="border border-gray-400 rounded-md p-4">
                     <img
@@ -103,6 +130,9 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
+                    <button className="btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5">
+                        <FaBookmark></FaBookmark>Favorite
+                    </button>
                 </div>
                 <div className="border border-gray-400 rounded-md p-4">
                     <img
@@ -133,6 +163,9 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
+                    <button className="btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5">
+                        <FaBookmark></FaBookmark>Favorite
+                    </button>
                 </div>
                 <div className="border border-gray-400 rounded-md p-4">
                     <img
@@ -163,6 +196,9 @@ const ChefDetail = () => {
                             </div>
                         ))}
                     </div>
+                    <button className="btn btn-info w-4/6 text-center flex justify-center items-center rounded-none bottom-0 mt-5">
+                        <FaBookmark></FaBookmark>Favorite
+                    </button>
                 </div>
             </div>
         </div>

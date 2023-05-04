@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -22,9 +23,27 @@ const Register = () => {
         setError("");
 
         if (password !== confirm) {
-            setError("password did not match");
+            toast.error("password did not match!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
         } else if (password.length < 6) {
-            setError(`password must be at \n least 6 characters long`);
+            toast.error("password must be at least 6 characters long!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
         }
 
         createUser(email, password, displayName)

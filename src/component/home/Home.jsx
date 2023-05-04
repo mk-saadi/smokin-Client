@@ -5,7 +5,6 @@ import Chefs from "./Chefs";
 
 const Home = () => {
     const chef = useLoaderData([]);
-    console.log(chef);
 
     return (
         <>
@@ -27,7 +26,7 @@ const Home = () => {
                             <input
                                 type="text"
                                 placeholder="Search your favorite chefs"
-                                className="input input-bordered  input-info font-mono w-full max-w-3xl rounded-e-none"
+                                className="input input-bordered  input-info font-mono w-full max-w-3xl rounded-e-none bg-slate-200 text-gray-800"
                             />
                             <button className="btn btn-info rounded-none rounded-e-md">
                                 <FaSearch className="text-xl" />

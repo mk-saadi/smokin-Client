@@ -8,6 +8,8 @@ import AuthProvider from "./context/AuthProvider";
 import Login from "./component/authentication/Login";
 import Register from "./component/authentication/Register";
 import ChefDetail from "./component/chefDetail/ChefDetail";
+import Blog from "./component/blog/Blog";
+import PrivateRoute from "./component/private/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -21,9 +23,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "/chef/:id",
-                element: <ChefDetail />,
+                element: (
+                    <PrivateRoute>
+                        <ChefDetail />
+                    </PrivateRoute>
+                ),
                 loader: ({ params }) =>
                     fetch(`https://chef-app-server-mk-saadi.vercel.app/chef/${params.id}`),
+            },
+            {
+                path: "/blog",
+                element: <Blog />,
             },
             {
                 path: "/login",

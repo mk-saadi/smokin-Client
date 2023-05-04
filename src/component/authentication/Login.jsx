@@ -1,16 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
 
     const navigate = useNavigate();
-    // const location = useLocation();
-    // console.log("login page location", location);
+    const location = useLocation();
 
-    // const from = location.state?.from?.pathname || "/category/0";
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -25,8 +26,7 @@ const Login = () => {
             .then((result) => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                // navigate(from, { replace: true });
-                navigate("/");
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error);
@@ -81,6 +81,14 @@ const Login = () => {
                                 <label className="text-sm">
                                     <p>Remember me</p>
                                 </label>
+                            </div>
+                            <div className="flex justify-center items-center gap-1">
+                                <button className="flex justify-center items-center btn btn-outline gap-1">
+                                    <FcGoogle /> Google
+                                </button>
+                                <button className="flex justify-center items-center btn btn-outline gap-1">
+                                    <FaGithub /> Github
+                                </button>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-info rounded-none font-bold text-white">
