@@ -22,6 +22,8 @@ const Login = () => {
 
         console.log(`email${email}\n password${password}`);
 
+        form.reset();
+
         signIn(email, password)
             .then((result) => {
                 const loggedUser = result.user;
@@ -35,6 +37,17 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         handleGoogleAuth()
+            .then((result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const handleGithubLogin = () => {
+        handleGithubAuth()
             .then((result) => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
@@ -100,7 +113,10 @@ const Login = () => {
                                 >
                                     <FcGoogle /> Google
                                 </button>
-                                <button className="flex justify-center items-center btn btn-outline gap-1">
+                                <button
+                                    onClick={handleGithubLogin}
+                                    className="flex justify-center items-center btn btn-outline gap-1"
+                                >
                                     <FaGithub /> Github
                                 </button>
                             </div>

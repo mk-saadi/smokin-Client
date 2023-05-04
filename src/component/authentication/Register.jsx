@@ -20,6 +20,8 @@ const Register = () => {
 
         console.log(`name: ${displayName} \n email: ${email}\n password: ${password}`);
 
+        form.reset();
+
         setError("");
 
         if (password !== confirm) {
@@ -49,8 +51,8 @@ const Register = () => {
         createUser(email, password, displayName)
             .then((result) => {
                 const createdUser = result.user;
+                toa;
                 console.log(createdUser);
-                form.reset();
             })
             .catch((error) => {
                 console.log(error);

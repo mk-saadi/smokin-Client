@@ -15,7 +15,7 @@ const Header = () => {
     };
 
     return (
-        <div className="navbar bg-slate-100 border-b-2 border-sky-500 grid grid-cols-2 sm:flex fixed top-0 opacity-95 z-50">
+        <div className="navbar bg-slate-100 border-b-2 border-sky-500 grid grid-cols-2 sm:flex opacity-95 z-50">
             <div className="navbar-start order-1">
                 <Link
                     to="/"

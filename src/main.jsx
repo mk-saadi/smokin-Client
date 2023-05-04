@@ -10,11 +10,15 @@ import Register from "./component/authentication/Register";
 import ChefDetail from "./component/chefDetail/ChefDetail";
 import Blog from "./component/blog/Blog";
 import PrivateRoute from "./component/private/PrivateRoute";
+import Recipes from "./component/extra/Recipes";
+import Shop from "./component/extra/Shop";
+import ErrorPage from "./component/errorPAge/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Admin />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
@@ -42,6 +46,14 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />,
+            },
+            {
+                path: "/recipes",
+                element: <Recipes />,
+            },
+            {
+                path: "/shop",
+                element: <Shop />,
             },
         ],
     },
